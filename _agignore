@@ -5,6 +5,7 @@
 *.bak
 *~
 .*.swp
+cctree.out
 cscope.*out
 cscope.files
 ctags.files
