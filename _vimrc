@@ -153,6 +153,7 @@ Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 Plug 'benmills/vimux'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'edkolev/promptline.vim'
+Plug 'edkolev/tmuxline.vim'
 
 " programming
 Plug 'vim-scripts/TaskList.vim'
@@ -528,7 +529,7 @@ nnoremap <silent> <leader>G :Ag!<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimux
-let g:VimuxHeight = "40"
+let g:VimuxHeight = "30"
 let g:VimuxOrientation = "h"
 
 function! VimuxSlime()
@@ -544,6 +545,7 @@ nmap <Leader>vs vip<Leader>vs<CR>
 
 " Prompt for a command to run
 map <Leader>vp :VimuxPromptCommand<CR>
+map <Leader>vm :VimuxPromptCommand("make ")<CR>
 
 " Run last command executed by VimuxRunCommand
 map <Leader>vl :VimuxRunLastCommand<CR>
@@ -573,5 +575,16 @@ let g:NERDCustomDelimiters = {
             \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" promptline
-let g:promptline_preset = 'clear'
+" promptline.vim
+"let g:promptline_preset = 'clear'
+let g:promptline_preset = {
+        \'b' : [ promptline#slices#python_virtualenv(), '$USER' ],
+        \'a' : [ promptline#slices#vcs_branch() ],
+        \'c' : [ promptline#slices#cwd() ],
+        \'options': {
+          \'left_sections' : [ 'b', 'a', 'c' ],
+          \'left_only_sections' : [ 'b', 'a', 'c' ]}}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" tmuxline.vim
+let g:tmuxline_preset = 'tmux'
