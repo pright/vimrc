@@ -142,7 +142,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-scripts/visSum.vim'
-"Plug 'vim-scripts/Tabular'
 Plug 'junegunn/vim-easy-align'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'kshenoy/vim-signature'
@@ -154,10 +153,11 @@ Plug 'benmills/vimux'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'edkolev/promptline.vim'
 Plug 'edkolev/tmuxline.vim'
+Plug 'dkprice/vim-easygrep'
 
 " programming
 Plug 'vim-scripts/TaskList.vim'
-Plug 'vim-scripts/a.vim'
+Plug 'vim-scripts/a.vim', { 'for': ['c', 'cpp'] }
 "Plug 'pright/c.vim'
 Plug 'mbbill/echofunc'
 Plug 'vim-scripts/DoxygenToolkit.vim'
@@ -166,8 +166,8 @@ Plug 'pright/CCTree'
 Plug 'pright/stl-tags'
 Plug 'pright/glibc-tags'
 Plug 'pright/mytags'
-Plug 'vim-scripts/OmniCppComplete'
-Plug 'davidhalter/jedi-vim', { 'do': 'git submodule update --init' }
+Plug 'vim-scripts/OmniCppComplete', { 'for': ['c', 'cpp'] }
+Plug 'davidhalter/jedi-vim', { 'do': 'git submodule update --init', 'for': 'python' }
 "Plug 'vim-scripts/clang-complete'
 "Plug 'Valloric/YouCompleteMe'
 "Plug 'vim-scripts/code_complete'
@@ -177,14 +177,15 @@ Plug 'pright/vim-snippets'
 "Plug 'drmingdrmer/xptemplate'
 "Plug 'vim-scripts/UltiSnips'
 Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
 "Plug 'vim-scripts/minibufexpl.vim'
 "Plug 'vim-scripts/bufexplorer.zip'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 "Plug 'vim-scripts/taglist.vim'
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 "Plug 'pright/winmanager--Fox'
-Plug 'elzr/vim-json'
-Plug 'plasticboy/vim-markdown'
+Plug 'elzr/vim-json', { 'for': 'json' }
+Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'mattn/emmet-vim'
 "Plug 'scrooloose/syntastic'
 
