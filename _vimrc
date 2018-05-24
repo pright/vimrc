@@ -154,6 +154,7 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'edkolev/promptline.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'dkprice/vim-easygrep'
+Plug 'lfv89/vim-interestingwords'
 
 " programming
 Plug 'vim-scripts/TaskList.vim'
@@ -188,6 +189,9 @@ Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'mattn/emmet-vim'
 "Plug 'scrooloose/syntastic'
+"Plug 'ludovicchabant/vim-gutentags'
+"Plug 'w0rp/ale'
+Plug 'michaeljsmith/vim-indent-object'
 
 call plug#end()
 
@@ -265,8 +269,8 @@ nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ctags
-set tags+=~/.vim/bundle/stl-tags/tags
-set tags+=~/.vim/bundle/glibc-tags/tags
+"set tags+=~/.vim/bundle/stl-tags/tags
+"set tags+=~/.vim/bundle/glibc-tags/tags
 "set tags+=~/.vim/bundle/mytags/hi3716c_sdk50_framework_base.tags
 if filereadable("tags")
     set tags+=tags
@@ -589,3 +593,21 @@ let g:promptline_preset = {
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " tmuxline.vim
 let g:tmuxline_preset = 'tmux'
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-gutentags
+let g:gutentags_modules = []
+if executable('ctags')
+    let g:gutentags_modules += ['ctags']
+endif
+if executable('cscope')
+    let g:gutentags_modules += ['cscope']
+endif
+if executable('gtags-cscope') && executable('gtags')
+    let g:gutentags_modules += ['gtags_cscope']
+endif
+
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
