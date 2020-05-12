@@ -155,6 +155,8 @@ Plug 'edkolev/promptline.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'dkprice/vim-easygrep'
 Plug 'lfv89/vim-interestingwords'
+Plug 'vim-scripts/VisIncr'
+Plug 'justinmk/vim-dirvish'
 
 " programming
 Plug 'vim-scripts/TaskList.vim'
@@ -164,9 +166,9 @@ Plug 'mbbill/echofunc'
 Plug 'vim-scripts/DoxygenToolkit.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'pright/CCTree'
-Plug 'pright/stl-tags'
-Plug 'pright/glibc-tags'
-Plug 'pright/mytags'
+"Plug 'pright/stl-tags'
+"Plug 'pright/glibc-tags'
+"Plug 'pright/mytags'
 Plug 'vim-scripts/OmniCppComplete', { 'for': ['c', 'cpp'] }
 Plug 'davidhalter/jedi-vim', { 'do': 'git submodule update --init', 'for': 'python' }
 "Plug 'vim-scripts/clang-complete'
@@ -293,7 +295,7 @@ nnoremap <silent> <leader>a :A<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " grep.vim
 if !executable('ag')
-    let Grep_Default_Filelist = '*.c *.cpp *.h'
+    let Grep_Default_Filelist = '*.c *.cpp *.h *.S'
     let Grep_Skip_Files = '*.bak *~'
     let Grep_Default_Options = '-i'
     nnoremap <silent> <F5> :Rgrep<CR>
@@ -348,10 +350,11 @@ let g:EchoFuncKeyNext="<C-n>"
 let g:DoxygenToolkit_authorName="Jun Xie"
 "let g:DoxygenToolkit_licenseTag="My own license"   <-- !!! Does not end with "\<enter>"
 let g:doxygenToolkit_briefTag_funcName="yes"
-nnoremap <F2>a :DoxAuthor
-nnoremap <F2>f :Dox
-nnoremap <F2>b :DoxBlock
-nnoremap <F2>c O/** */<Left><Left>
+nnoremap <silent> <leader>da :DoxAuthor<CR>
+nnoremap <silent> <leader>df :Dox<CR>
+nnoremap <silent> <leader>db :DoxBlock<CR>
+nnoremap <silent> <leader>dc O/** */<Left><Left>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FuzzyFinder
@@ -550,7 +553,9 @@ nmap <Leader>vs vip<Leader>vs<CR>
 
 " Prompt for a command to run
 map <Leader>vp :VimuxPromptCommand<CR>
-map <Leader>vm :VimuxPromptCommand("make ")<CR>
+map <Leader>vm :VimuxPromptCommand("make")<CR><CR>
+map <Leader>vmc :VimuxPromptCommand("make clean")<CR><CR>
+map <Leader>vma :VimuxPromptCommand("make ")<CR>
 
 " Run last command executed by VimuxRunCommand
 map <Leader>vl :VimuxRunLastCommand<CR>
@@ -583,12 +588,12 @@ let g:NERDCustomDelimiters = {
 " promptline.vim
 "let g:promptline_preset = 'clear'
 let g:promptline_preset = {
-        \'b' : [ promptline#slices#python_virtualenv(), '$USER' ],
-        \'a' : [ promptline#slices#vcs_branch() ],
-        \'c' : [ promptline#slices#cwd() ],
-        \'options': {
-          \'left_sections' : [ 'b', 'a', 'c' ],
-          \'left_only_sections' : [ 'b', 'a', 'c' ]}}
+            \'b' : [ promptline#slices#python_virtualenv(), '$USER' ],
+            \'a' : [ promptline#slices#vcs_branch() ],
+            \'c' : [ promptline#slices#cwd() ],
+            \'options': {
+            \'left_sections' : [ 'b', 'a', 'c' ],
+            \'left_only_sections' : [ 'b', 'a', 'c' ]}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " tmuxline.vim
@@ -611,3 +616,8 @@ endif
 let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VisIncr
+vnoremap <silent> g<C-A> :I<CR>
+vnoremap <silent> g<C-X> :I -1<CR>
