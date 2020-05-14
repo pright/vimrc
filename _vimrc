@@ -632,3 +632,7 @@ let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 " VisIncr
 vnoremap <silent> g<C-A> :I<CR>
 vnoremap <silent> g<C-X> :I -1<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-multiple-cursors
+let g:multi_cursor_exit_from_insert_mode = 1
