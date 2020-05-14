@@ -28,11 +28,17 @@ set nu
 set rnu
 
 " tab width
+set smarttab
+set expandtab
 set tabstop=4
 set shiftwidth=4
-set expandtab
 set softtabstop=4
-set smarttab
+"set noexpandtab
+"set tabstop=8
+"set shiftwidth=8
+"set softtabstop=8
+"set copyindent
+"set preserveindent
 
 " encoding
 let &termencoding=&encoding
@@ -180,7 +186,11 @@ Plug 'pright/vim-snippets'
 "Plug 'drmingdrmer/xptemplate'
 "Plug 'vim-scripts/UltiSnips'
 Plug 'tpope/vim-fugitive'
-Plug 'mhinz/vim-signify'
+if has('nvim') || has('patch-8.0.902')
+    Plug 'mhinz/vim-signify'
+else
+    Plug 'mhinz/vim-signify', { 'tag': 'legacy' }
+endif
 "Plug 'vim-scripts/minibufexpl.vim'
 "Plug 'vim-scripts/bufexplorer.zip'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -194,6 +204,7 @@ Plug 'mattn/emmet-vim'
 "Plug 'ludovicchabant/vim-gutentags'
 "Plug 'w0rp/ale'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'tpope/vim-sleuth'
 
 call plug#end()
 
