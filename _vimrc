@@ -40,6 +40,9 @@ set softtabstop=4
 "set copyindent
 "set preserveindent
 
+" Place 'case' label 0 characters from switch's indent
+set cinoptions+=:0
+
 " encoding
 let &termencoding=&encoding
 set fileencoding=utf-8
@@ -138,7 +141,7 @@ Plug 'vim-scripts/stlrefvim'
 Plug 'vim-scripts/grep.vim'
 Plug 'mileszs/ack.vim'
 Plug 'vim-scripts/YankRing.vim'
-Plug 'Lokaltog/vim-easymotion'
+Plug 'easymotion/vim-easymotion'
 "Plug 'Lokaltog/vim-powerline', { 'branch': 'develop' }
 Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
@@ -155,7 +158,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-obsession' | Plug 'dhruvasagar/vim-prosession'
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
-Plug 'benmills/vimux'
+Plug 'preservim/vimux'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'edkolev/promptline.vim'
 Plug 'edkolev/tmuxline.vim'
@@ -594,6 +597,7 @@ let g:table_mode_corner_corner = '+'
 let g:NERDCustomDelimiters = {
             \ 'asm': { 'left': '/*', 'right': '*/' }
             \ }
+let g:NERDSpaceDelims = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " promptline.vim
@@ -636,3 +640,7 @@ vnoremap <silent> g<C-X> :I -1<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-multiple-cursors
 let g:multi_cursor_exit_from_insert_mode = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-snipmate
+let g:snipMate = { 'snippet_version' : 1 }
