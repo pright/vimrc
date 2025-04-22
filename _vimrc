@@ -57,7 +57,7 @@ set completeopt=longest,menu
 
 set ignorecase smartcase
 
-let mapleader = ","
+let mapleader = " "
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
@@ -166,6 +166,8 @@ Plug 'dkprice/vim-easygrep'
 Plug 'lfv89/vim-interestingwords'
 Plug 'vim-scripts/VisIncr'
 Plug 'justinmk/vim-dirvish'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'glts/vim-magnum' | Plug 'glts/vim-radical'
 
 " programming
 Plug 'vim-scripts/TaskList.vim'
@@ -208,6 +210,12 @@ Plug 'mattn/emmet-vim'
 "Plug 'w0rp/ale'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'tpope/vim-sleuth'
+Plug 'rust-lang/rust.vim'
+Plug 'will133/vim-dirdiff'
+" Plug 'prabirshrestha/vim-lsp'
+" Plug 'mattn/vim-lsp-settings'
+" Plug 'prabirshrestha/asyncomplete.vim'
+" Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
 call plug#end()
 
@@ -285,14 +293,12 @@ nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ctags
-"set tags+=~/.vim/bundle/stl-tags/tags
-"set tags+=~/.vim/bundle/glibc-tags/tags
-"set tags+=~/.vim/bundle/mytags/hi3716c_sdk50_framework_base.tags
 if filereadable("tags")
     set tags+=tags
 endif
 
-nnoremap <silent> <leader>u :!update_tags<CR>:cs reset<CR><CR>
+nnoremap <silent> <leader>u :AsyncRun update_tags<CR>:cs reset<CR><CR>
+nnoremap <silent> <leader><leader>u :!update_tags<CR>:cs reset<CR><CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " minibufexpl
@@ -421,7 +427,7 @@ nnoremap <silent> <F4> :TagbarToggle<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " TaskList
 let g:tlWindowPosition = 1
-map <leader>v <Plug>TaskList
+map <leader>l <Plug>TaskList
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " pep8
@@ -543,8 +549,8 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 nnoremap <silent> <leader>f :Files<CR>
 nnoremap <silent> <leader>t :BTags<CR>
 nnoremap <silent> <leader>T :Tags<CR>
-nnoremap <silent> <leader>r :History<CR>
-nnoremap <silent> <leader>c :History:<CR>
+nnoremap <silent> <leader>h :History<CR>
+nnoremap <silent> <leader>r :History:<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>g :Ag<CR>
 nnoremap <silent> <leader>G :Ag!<CR>
@@ -644,3 +650,17 @@ let g:multi_cursor_exit_from_insert_mode = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-snipmate
 let g:snipMate = { 'snippet_version' : 1 }
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" asyncrun.vim
+" automatically open quickfix window when AsyncRun command is executed
+" set the quickfix window 6 lines height.
+let g:asyncrun_open = 4
+let g:asyncrun_status = 'stopped'
+let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" asyncomplete.vim
+" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
