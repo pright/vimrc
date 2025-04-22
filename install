@@ -17,4 +17,7 @@ if [ ! -f $plugm ]; then
 fi
 vim -c "PlugInstall" +"qall"
 
+vim -c "PromptlineSnapshot ~/.promptline.sh airline" +"qall"
+echo "source ~/.promptline.sh" >> $home/.bashrc
+
 exit 0
