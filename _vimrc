@@ -216,6 +216,7 @@ Plug 'will133/vim-dirdiff'
 " Plug 'mattn/vim-lsp-settings'
 " Plug 'prabirshrestha/asyncomplete.vim'
 " Plug 'prabirshrestha/asyncomplete-lsp.vim'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -268,7 +269,7 @@ nnoremap <silent> <F3> :NERDTreeToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cscope
 if has("cscope")
-    set csprg=/usr/bin/cscope
+    set csprg=cscope
     set csto=0
     set cst
     set nocsverb
@@ -297,7 +298,7 @@ if filereadable("tags")
     set tags+=tags
 endif
 
-nnoremap <silent> <leader>u :AsyncRun update_tags<CR>:cs reset<CR><CR>
+nnoremap <silent> <leader>u :AsyncRun -silent -post=:cs\ reset update_tags<CR>
 nnoremap <silent> <leader><leader>u :!update_tags<CR>:cs reset<CR><CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -549,15 +550,15 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 nnoremap <silent> <leader>f :Files<CR>
 nnoremap <silent> <leader>t :BTags<CR>
 nnoremap <silent> <leader>T :Tags<CR>
-nnoremap <silent> <leader>h :History<CR>
-nnoremap <silent> <leader>r :History:<CR>
+nnoremap <silent> <leader>r :History<CR>
+nnoremap <silent> <leader>c :History:<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>g :Ag<CR>
 nnoremap <silent> <leader>G :Ag!<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimux
-let g:VimuxHeight = "30"
+let g:VimuxHeight = "40%"
 let g:VimuxOrientation = "h"
 
 function! VimuxSlime()
@@ -655,9 +656,10 @@ let g:snipMate = { 'snippet_version' : 1 }
 " asyncrun.vim
 " automatically open quickfix window when AsyncRun command is executed
 " set the quickfix window 6 lines height.
-let g:asyncrun_open = 4
+let g:asyncrun_open = 6
 let g:asyncrun_status = 'stopped'
 let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
+noremap <leader>q :call asyncrun#quickfix_toggle(6)<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " asyncomplete.vim
